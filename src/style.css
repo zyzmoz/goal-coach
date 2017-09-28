@@ -1,0 +1,13 @@
+.form {
+  margin: 0 auto;
+  margin-top:25%;
+  max-width: 450px;
+  min-width: 450px;
+}
+
+.form input, button {
+  margin: 5px;
+  width: 97% !important;
+
+
+}
