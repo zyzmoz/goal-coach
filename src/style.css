@@ -1,8 +1,12 @@
 .form {
   margin: 0 auto;
-  margin-top:25%;
+  margin-top:15%;
   max-width: 450px;
   min-width: 450px;
+}
+
+.msg {
+  margin: 5px; 
 }
 
 .form input, button {

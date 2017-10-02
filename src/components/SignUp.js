@@ -27,6 +27,10 @@ class SignUp extends Component {
   }
 
   render(){
+    let msg = null;
+    if (this.state.error.msg !== '') {
+      msg = <div className="alert alert-danger msg">{this.state.error.message}</div>
+    }
     return (
       <div className="form-inline  form">
         <h2>Sign Up</h2>
@@ -51,7 +55,7 @@ class SignUp extends Component {
             Sign Up
           </button>
         </div>
-        <div>{this.state.error.message}</div>
+        {msg}
       </div>
     )
   }
