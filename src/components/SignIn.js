@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { firebaseApp }  from '../providers/firebase';
 import '../style.css';
 
@@ -30,11 +30,17 @@ class SignIn extends Component {
       msg = <div className="alert alert-danger msg">{this.state.error.message}</div>
     }
 
+    if (localStorage.getItem('UID')){
+      return (
+        <Redirect to={'/'}/>
+      )
+    }
+
     return (
       <div className="form-inline form">
         <h2>Sign In</h2>
         <div className="form-group">
-          <input 
+          <input
             className="form-control"
             placeholder="e-Mail"
             onChange={e => this.setState({email: e.target.value})}
@@ -45,7 +51,7 @@ class SignIn extends Component {
             type="password"
             onChange={e => this.setState({password: e.target.value})}
             />
-          <button 
+          <button
             className="btn btn-primary"
             type="button"
             onClick={() => this.signIn()}>
@@ -54,7 +60,7 @@ class SignIn extends Component {
         </div>
         {msg}
         <Link to={'/signup'}><button className="btn btn-secondary">Sign Up </button></Link>
-        
+
       </div>
     )
   }

@@ -10,20 +10,31 @@ import SignUp from './components/SignUp';
 
 firebaseApp.auth().onAuthStateChanged(user => {
   if (user){
-    console.log('user has signed in or up', user);   
+    console.log('user has signed in or up', user);
+    localStorage.setItem('UID', user.uid);
   } else {
-    console.log('user has signed out or still needs to sign in');    
+    console.log('user has signed out or still needs to sign in');
+    localStorage.removeItem('UID');
   }
 });
 
+const PrivateRoute = ({component: Component, ...rest}) => (
+  <Route {...rest} render={props => (
+      localStorage.getItem('UID') ?
+      (<Component {...props}/>) :
+      (<SignIn/>)
+  )}/>
+);
+
+
 ReactDOM.render(
-    <BrowserRouter>      
+    <BrowserRouter>
       <div>
-        <Route exact path="/" component={App} /> 
+        <PrivateRoute path="/" component={App}/>
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
       </div>
-      
+
     </BrowserRouter>,
     document.getElementById('root')
 )
