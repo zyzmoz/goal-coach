@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import { firebaseApp } from '../providers/firebase';
 import '../style.css';
 
@@ -28,7 +29,7 @@ class SignUp extends Component {
 
   render(){
     let msg = null;
-    if (this.state.error.msg !== '') {
+    if (this.state.error.message !== '') {
       msg = <div className="alert alert-danger msg">{this.state.error.message}</div>
     }
     return (
@@ -56,6 +57,7 @@ class SignUp extends Component {
           </button>
         </div>
         {msg}
+        <Link to={'/signin'}><button className="btn btn-secondary">Sign In </button></Link>
       </div>
     )
   }
