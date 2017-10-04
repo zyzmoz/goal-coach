@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { firebaseApp } from '../providers/firebase';
+import AddGoal from './AddGoal';
 
 class App extends Component {
   signOut(){
@@ -8,7 +10,8 @@ class App extends Component {
   render() {
     return(
       <div>
-        <h2>App</h2>
+        <h2>Goals</h2>
+        <AddGoal />
         <button
           className="btn btn-danger"
           onClick={() => this.signOut()}
@@ -20,4 +23,9 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state){
+  console.log('state', state);
+  return {};
+}
+
+export  default connect(mapStateToProps, null)(App);
