@@ -1,4 +1,4 @@
-import { SIGNED_IN, ADD_GOAL} from '../constants';
+import { SIGNED_IN, ADD_GOAL, LIST_GOAL} from '../constants';
 
 export function logUser(email){
   const action = {
@@ -12,8 +12,16 @@ export function addGoal(goal){
   const { email, text } = goal;
   const action = {
     type: ADD_GOAL,
-    email,
-    text
+    email: email,
+    text: text
+  }
+  return action;
+}
+
+export function listGoal(goals){
+  const action = {
+    type: LIST_GOAL,
+    goals
   }
   return action;
 }

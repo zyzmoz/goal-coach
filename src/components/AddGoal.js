@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { addGoal } from '../actions';
+import { goalRef } from '../providers/firebase';
 
 class AddGoal extends Component {
   constructor(props){
@@ -10,11 +11,14 @@ class AddGoal extends Component {
       email: '',
       text: ''
     }
+
   }
 
   addGoal(){
-    this.props.addGoal(this.state);
-    console.log(this.props);
+    const { email } = this.props.user;
+    const { text } = this.state;
+    this.props.addGoal({email, text});
+    goalRef.push({email, text});
   }
 
   render(){
@@ -39,13 +43,14 @@ class AddGoal extends Component {
 }
 
 function mapStateToProps(state){
+  const { user, goals } = state;
   return {
-    state
+    user
   }
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({addGoal}, dispatch);
+  return bindActionCreators({ addGoal }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddGoal);
