@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {listGoal} from '../actions';
 import { goalRef } from '../providers/firebase';
+import  GoalItem  from './GoalItem';
 
 class GoalList extends Component {
 
@@ -32,7 +33,8 @@ class GoalList extends Component {
         {
           this.props.goals.map((goal, index) => {
             return(
-              <div key={index}>{goal.text}</div>
+              <GoalItem key={index} goal={goal} />
+              // <div key={index}>{goal.text}</div>
             )
           })
         }
